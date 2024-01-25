@@ -3,23 +3,22 @@ import pandas as pd
 import requests
 import pprint
 
+APIkey = 'PJCB1PM5LO1IW14L'
+
 class AlphaVantage:
-    def __init__(self, APIkey) -> None:
-        self.APIkey = APIkey
+    def __init__(self) -> None:
         pass
 
 
     class FundamentalData:
 
-        def __init__(self, alphaVantage) -> None:
-            self.APIkey = alphaVantage.APIkey
-            
+        def __init__(self) -> None:            
             pass
 
         class IncomeStatement:
 
-            def __init__(self, fundamentalData, symbol) -> None:
-                self.APIkey = fundamentalData.APIkey
+            def __init__(self, symbol) -> None:
+                self.APIkey = APIkey
                 self.function = 'INCOME_STATEMENT'
                 self.symbol = symbol
                 url = 'https://www.alphavantage.co/query?function=' + self.function + '&symbol=' + self.symbol + '&apikey=' + self.APIkey
@@ -35,9 +34,9 @@ class AlphaVantage:
         
         class BalanceSheet:
 
-            def __init__(self, fundamentalData, symbol) -> None:
+            def __init__(self, symbol) -> None:
                 self.function = 'BALANCE_SHEET'
-                self.APIkey = fundamentalData.APIkey
+                self.APIkey = APIkey
                 self.symbol = symbol
                 url = 'https://www.alphavantage.co/query?function=' + self.function + '&symbol=' + self.symbol + '&apikey=' + self.APIkey
                 r = requests.get(url)
@@ -51,9 +50,9 @@ class AlphaVantage:
 
         class CashFlow:
 
-            def __init__(self, fundamentalData, symbol) -> None:
+            def __init__(self, symbol) -> None:
                 self.function = 'CASH_FLOW'
-                self.APIkey = fundamentalData.APIkey
+                self.APIkey = APIkey
                 self.symbol = symbol
                 url = 'https://www.alphavantage.co/query?function=' + self.function + '&symbol=' + self.symbol + '&apikey=' + self.APIkey
                 r = requests.get(url)
@@ -67,9 +66,9 @@ class AlphaVantage:
 
         class Earnings:
 
-            def __init__(self, fundamentalData, symbol) -> None:
+            def __init__(self, symbol) -> None:
                 self.function = 'EARNINGS'
-                self.APIkey = fundamentalData.APIkey
+                self.APIkey = APIkey
                 self.symbol = symbol
                 url = 'https://www.alphavantage.co/query?function=' + self.function + '&symbol=' + self.symbol + '&apikey=' + self.APIkey
                 r = requests.get(url)

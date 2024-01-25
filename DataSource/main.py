@@ -1,18 +1,19 @@
 import numpy as np
 import pandas as pd
-from process import AlphaVantage
+from alphavantage import AlphaVantage
 
-APIkey = 'PJCB1PM5LO1IW14L'
 
-DS = AlphaVantage(APIkey)
-FD = DS.FundamentalData(DS)
+### Data Source from Alpha Vantage
+
+AV = AlphaVantage()
+FD = AV.FundamentalData()
 
 symbol = 'IBM'
 
-incomeStatement = FD.IncomeStatement(FD, symbol)
-balanceSheet = FD.BalanceSheet(FD, symbol)
-cashFlow = FD.CashFlow(FD, symbol)
-earnings = FD.Earnings(FD, symbol)
+incomeStatement = FD.IncomeStatement(symbol)
+balanceSheet = FD.BalanceSheet(symbol)
+cashFlow = FD.CashFlow(symbol)
+earnings = FD.Earnings(symbol)
 
 print(incomeStatement.getAnnualReports())
 print(incomeStatement.getQuarterlyReports())
@@ -28,5 +29,7 @@ print(earnings.getQuarterlyEarnings())
 
 
 
+
+### Data Source from EODHD APIS
 
 
