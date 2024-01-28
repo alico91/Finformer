@@ -1,19 +1,22 @@
 import numpy as np
 import pandas as pd
 from alphavantage import AlphaVantage
-
+from compustat import getParameter
+import usfundamentals 
+import sys
 
 ### Data Source from Alpha Vantage
 
 AV = AlphaVantage()
 FD = AV.FundamentalData()
 
-symbol = 'IBM'
+symbol = 'AAPL'
 
 incomeStatement = FD.IncomeStatement(symbol)
 balanceSheet = FD.BalanceSheet(symbol)
 cashFlow = FD.CashFlow(symbol)
 earnings = FD.Earnings(symbol)
+
 
 print(incomeStatement.getAnnualReports())
 print(incomeStatement.getQuarterlyReports())
@@ -27,9 +30,14 @@ print(cashFlow.getQuarterlyReports())
 print(earnings.getAnnualEarnings())
 print(earnings.getQuarterlyEarnings())
 
+### Data Source from Compustat / Capital IQ (WRDS)
 
+symbol = 'AAPL'
+metric = 'revtq'
+N = 1000 #max datapoints
+startDate = "2000-01-01"
+endDate = "2024-01-01"
 
-
-### Data Source from EODHD APIS
+getParameter(symbol, metric, N, startDate, endDate)
 
 
